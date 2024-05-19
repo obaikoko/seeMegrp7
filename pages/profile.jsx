@@ -4,18 +4,24 @@ import Particle from '../components/design.jsx';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from '../styles/profile.module.css';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useProfileMutation } from '@/src/features/auth/userApiSlice.js';
+import Loader from '@/components/Loader.jsx';
+import { setCredentials } from '@/src/features/auth/authSlice.js';
 const ProfileSetup = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const { userInfo } = useSelector((state) => state.auth);
 
   const [user, setUser] = useState('');
+  const [image, setImage] = useState('');
   const [formData, setFormData] = useState({
     username: userInfo && userInfo.username,
   });
   const { username } = formData;
+
+  const [updateProfile, { isLoading }] = useProfileMutation();
 
   useEffect(() => {
     setUser(userInfo);
@@ -27,9 +33,33 @@ const ProfileSetup = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const handleSave = () => {
-    toast.success('Profile saved');
-    router.push('/addfriends');
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+    }
+  };
+  const handleSave = async () => {
+    // toast.success('Profile saved');
+    // router.push('/addfriends');
+
+    try {
+      const res = await updateProfile({
+        username,
+        image: image ? image : user.image.url,
+      }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      router.push('/addfriends')
+      toast.success('Profile updated successfully');
+
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
@@ -63,10 +93,15 @@ const ProfileSetup = () => {
             <h2 className={styles['setprofiles']}>Set Up Profile</h2>
             <div className={styles['profile-image-wrapper']}>
               <img
-                src='https://res.cloudinary.com/duz7maquu/image/upload/v1716037111/SeeMe/Ellipse_6_mkpxi8.png'
+                src={user.image ? user.image.url || user.image : ''}
                 alt='Avatar'
               />
             </div>
+            <input
+              className={styles.input}
+              type='file'
+              onChange={handleImageChange}
+            />
             <input
               className={styles.input}
               type='text'
@@ -75,9 +110,13 @@ const ProfileSetup = () => {
               value={username}
               onChange={handleFormChange}
             />
-            <button onClick={handleSave} className={styles.button}>
-              Save
-            </button>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <button onClick={handleSave} className={styles.button}>
+                Save
+              </button>
+            )}
           </div>
         </div>
       </div>
