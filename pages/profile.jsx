@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useProfileMutation } from '@/src/features/auth/userApiSlice.js';
 import Loader from '@/components/Loader.jsx';
 import { setCredentials } from '@/src/features/auth/authSlice.js';
+import Resizer from 'react-image-file-resizer';
+
 const ProfileSetup = () => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -33,30 +35,46 @@ const ProfileSetup = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const handleImageChange = (event) => {
+
+  const resizeFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        640, // width
+        510, // height
+        'JPEG', // format
+        70, // quality
+        0, // rotation
+        (uri) => {
+          resolve(uri);
+        },
+        'base64' // output type
+      );
+    });
+
+  const handleImageChange = async (event) => {
     const file = event.target.files[0];
 
     if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
+      try {
+        const resizedImage = await resizeFile(file);
+        setImage(resizedImage);
+      } catch (error) {
+        toast.error('Error resizing image');
+        console.error('Error resizing image:', error);
+      }
     }
   };
-  const handleSave = async () => {
-    // toast.success('Profile saved');
-    // router.push('/addfriends');
 
+  const handleSave = async () => {
     try {
       const res = await updateProfile({
         username,
         image: image ? image : user.image.url,
       }).unwrap();
       dispatch(setCredentials({ ...res }));
-      router.push('/addfriends')
+      router.push('/addfriends');
       toast.success('Profile updated successfully');
-
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -110,13 +128,10 @@ const ProfileSetup = () => {
               value={username}
               onChange={handleFormChange}
             />
-            {isLoading ? (
-              <Loader />
-            ) : (
-              <button onClick={handleSave} className={styles.button}>
-                Save
-              </button>
-            )}
+
+            <button onClick={handleSave} className={styles.button}>
+              {isLoading ? <Loader /> : 'Save'}
+            </button>
           </div>
         </div>
       </div>

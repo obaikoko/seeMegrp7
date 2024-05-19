@@ -12,10 +12,11 @@ import {
   useRegisterMutation,
 } from '../src/features/auth/userApiSlice';
 import styles from '../styles/auth.module.css';
+import Loader from '@/components/Loader.jsx';
 
 const Auth = () => {
-  const [login, { isLoading }] = useLoginMutation();
-  const [register, { loadingRegister }] = useRegisterMutation();
+  const [login, { isLoading: loadingLogin }] = useLoginMutation();
+  const [register, { isloading: loadingRegister }] = useRegisterMutation();
   const [isActive, setIsActive] = useState(false);
   const [userInput, setUserInput] = useState({
     username: '',
@@ -193,7 +194,7 @@ const Auth = () => {
               className={styles['sign-btn']}
               onClick={handleLoginButton}
             >
-              {isLoading ? 'loading...' : 'Sign in'}
+              {loadingLogin ? <Loader/> : 'Sign in'}
             </button>
             <div className={styles.sign}>
               <div className={styles.line}></div>
