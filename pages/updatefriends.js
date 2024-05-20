@@ -6,23 +6,33 @@ import styles from '../styles/addfriends.module.css';
 import { useGetUsersQuery } from '@/src/features/auth/userApiSlice';
 import Loader from '@/components/Loader';
 // import AddFriendBtn from '@/components/AddFriendBtn';
-import { useAddFriendMutation } from '@/src/features/auth/friendsApiSlice';
+import {
+  useGetFriendQuery,
+  useUpdateFriendsRequestMutation,
+} from '@/src/features/auth/friendsApiSlice';
 import { toast } from 'react-toastify';
 
-function AddFriends() {
+function UpdateFriends() {
   const router = useRouter();
 
-  const [addFriend, { isLoading: loadingAddFriend, error: addFriendError }] =
-    useAddFriendMutation();
-  const { data: users, refetch, isLoading, error } = useGetUsersQuery();
+  const { data: usersFriends, refetch, isLoading, error } = useGetFriendQuery();
+  console.log(usersFriends);
+  const [
+    updateFriendsRequest,
+    {
+      // isLoading: loadingUpdateFriendsRequest,
+      // error: updateFriendsRequestError,
+    },
+  ] = useUpdateFriendsRequestMutation();
 
-  const handleSkipButton = () => {
-    router.push('/call');
-  };
-  const handleRequestBtn = async (id) => {
+  const acceptRequestBtn = async (id) => {
     try {
-      const res = await addFriend({ recipient: id }).unwrap();
-     
+      const res = await updateFriendsRequest({
+        sender: id,
+        status: 'accepted',
+      }).unwrap();
+      refetch();
+      toast.success(res);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -33,26 +43,29 @@ function AddFriends() {
       <Particle />
       <div className={styles.containerAddfriend}>
         <div className={styles['parent-div2']}>
-          <h1>Add Friends</h1>
+          <h1>Friend Request</h1>
         </div>
         <div className={styles['parent-div']}>
           <div className={styles.cally}>
-            <h3 className={styles.header}>Suggested</h3>
+            <h3 className={styles.header}>Pending Request</h3>
             {isLoading && <Loader />}
 
             <>
-              {users &&
-                users.map((user) => (
+              {usersFriends &&
+                usersFriends.map((user) => (
                   <div key={user._id}>
-                    <img
+                    {/* <img
                       src={user.image?.url || user.iamge}
                       alt=''
                       width={50}
                       height={50}
-                    />
+                    /> */}
                     {user.username}{' '}
-                    <button onClick={() => handleRequestBtn(user._id)}>
-                      ADD
+                    <button onClick={() => acceptRequestBtn(user.sender)}>
+                      {user.status === 'accepted' ? 'accepted' : 'Accept'}
+                    </button>
+                    <button onClick={() => rejectRequestBtn(user._id)}>
+                      Reject
                     </button>
                   </div>
                 ))}
@@ -68,8 +81,6 @@ function AddFriends() {
             </div>
             <div className={styles.con2}>
               <img src='https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg' />
-              <a href='#'>Continue</a>
-              <button onClick={handleSkipButton}>Skip</button>
             </div>
           </div>
         </div>
@@ -78,4 +89,4 @@ function AddFriends() {
   );
 }
 
-export default AddFriends;
+export default UpdateFriends;

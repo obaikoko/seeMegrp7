@@ -70,7 +70,7 @@ const ProfileSetup = () => {
     try {
       const res = await updateProfile({
         username,
-        image: image ? image : user.image.url,
+        image: image ? image : user.image,
       }).unwrap();
       dispatch(setCredentials({ ...res }));
       router.push('/addfriends');

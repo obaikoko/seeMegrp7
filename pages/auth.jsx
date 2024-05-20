@@ -16,7 +16,7 @@ import Loader from '@/components/Loader.jsx';
 
 const Auth = () => {
   const [login, { isLoading: loadingLogin }] = useLoginMutation();
-  const [register, { isloading: loadingRegister }] = useRegisterMutation();
+  const [register, { isLoading: loadingRegister }] = useRegisterMutation();
   const [isActive, setIsActive] = useState(false);
   const [userInput, setUserInput] = useState({
     username: '',
@@ -75,27 +75,34 @@ const Auth = () => {
 
   const handleRegisterButton = async (e) => {
     e.preventDefault();
-    const userInfo = { username, email, password };
-    try {
-      const res = await register(userInput).unwrap();
-      console.log(userInput);
-      router.push('/setup');
-      dispatch(setCredentials({ ...res }));
-      toast.success(`Welcome ${res.username}!`);
-    } catch (error) {
-      toast.error(error?.data?.message || error.message);
+    if (!username || !email || !password) {
+      toast.error('Enter all field');
+    } else {
+      try {
+        const res = await register({ username, email, password }).unwrap();
+        router.push('/profile');
+        dispatch(setCredentials({ ...res }));
+        toast.success(`Welcome ${res.username}!`);
+      } catch (error) {
+        toast.error(error?.data?.message || error.message);
+      }
     }
   };
 
   const handleLoginButton = async (e) => {
     e.preventDefault();
-    try {
-      const res = await login({ email, password }).unwrap();
-      router.push('/profile');
-      dispatch(setCredentials({ ...res }));
-      toast.success(`Welcome back ${res.username}`);
-    } catch (error) {
-      toast.error(error?.data?.message || error.message);
+
+    if (!email || !password) {
+      toast.error('Enter email or password');
+    } else {
+      try {
+        const res = await login({ email, password }).unwrap();
+        router.push('/profile');
+        dispatch(setCredentials({ ...res }));
+        toast.success(`Welcome back ${res.username}`);
+      } catch (error) {
+        toast.error(error?.data?.message || error.message);
+      }
     }
   };
 
@@ -140,7 +147,7 @@ const Auth = () => {
               </span>
             </div>
             <button type='submit' onClick={handleRegisterButton}>
-              {loadingRegister ? 'loading...' : 'Sign Up'}
+              {loadingRegister ? <Loader /> : 'Sign Up'}
             </button>
             <div className={styles.sign}>
               <div className={styles.line}></div>
@@ -194,7 +201,7 @@ const Auth = () => {
               className={styles['sign-btn']}
               onClick={handleLoginButton}
             >
-              {loadingLogin ? <Loader/> : 'Sign in'}
+              {loadingLogin ? <Loader /> : 'Sign in'}
             </button>
             <div className={styles.sign}>
               <div className={styles.line}></div>
