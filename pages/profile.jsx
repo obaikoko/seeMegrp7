@@ -116,7 +116,7 @@ const ProfileSetup = () => {
               />
             </div>
             <input
-              className={styles.input}
+              className={styles.edit}
               type='file'
               onChange={handleImageChange}
             />

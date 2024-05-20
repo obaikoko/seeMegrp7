@@ -120,3 +120,15 @@
 .images img {
   width: 80%;
 }
+
+.profile-right-section-wrapper .edit{
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  background: whitesmoke;
+  font-size: 95px;
+  position: absolute;
+  right: 27%;
+  top: 60%;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+}
