@@ -37,6 +37,18 @@ function UpdateFriends() {
       toast.error(err?.data?.message || err.error);
     }
   };
+  const rejectRequestBtn = async (id) => {
+    try {
+      const res = await updateFriendsRequest({
+        sender: id,
+        status: 'rejected',
+      }).unwrap();
+      refetch();
+      toast.success(res);
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
 
   return (
     <>
@@ -64,7 +76,7 @@ function UpdateFriends() {
                     <button onClick={() => acceptRequestBtn(user.sender)}>
                       {user.status === 'accepted' ? 'accepted' : 'Accept'}
                     </button>
-                    <button onClick={() => rejectRequestBtn(user._id)}>
+                    <button onClick={() => rejectRequestBtn(user.sender)}>
                       Reject
                     </button>
                   </div>

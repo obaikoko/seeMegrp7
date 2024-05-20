@@ -97,7 +97,7 @@ const Auth = () => {
     } else {
       try {
         const res = await login({ email, password }).unwrap();
-        router.push('/profile');
+        router.push('/call');
         dispatch(setCredentials({ ...res }));
         toast.success(`Welcome back ${res.username}`);
       } catch (error) {

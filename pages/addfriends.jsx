@@ -22,7 +22,7 @@ function AddFriends() {
   const handleRequestBtn = async (id) => {
     try {
       const res = await addFriend({ recipient: id }).unwrap();
-     
+      toast.success('Request sent successfully');
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
