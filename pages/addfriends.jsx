@@ -59,17 +59,17 @@ function AddFriends() {
               {users &&
                 users.map((user) => (
                   <div key={user._id}>
-                    <img
-                      src={user.image?.url || user.image}
-                      alt="Avatar"
-                    />
+                    <img src={user.image?.url || user.image} alt="Avatar" />
                     {user.username}{" "}
                     <button
                       onClick={() => handleRequestBtn(user._id)}
                       disabled={requestedUsers.includes(user._id)}
                       style={
                         requestedUsers.includes(user._id)
-                          ? { backgroundColor: "rgba(8, 72, 125, 0.5)", color: "white" }
+                          ? {
+                              backgroundColor: "rgba(8, 72, 125, 0.5)",
+                              color: "white",
+                            }
                           : {}
                       }
                     >

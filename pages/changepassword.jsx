@@ -10,7 +10,10 @@ const ChangePassword = () => {
         <div className={styles["password-container"]}>
           <div className={styles["password-toggle-panel"]}>
             <div className={styles["write-up"]}>
-              <img src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_og2nrm.svg" alt="Logo" />
+              <img
+                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_og2nrm.svg"
+                alt="Logo"
+              />
               <h2>Chill, we've got you!</h2>
             </div>
             <div className={styles.image}>
@@ -42,8 +45,12 @@ const ChangePassword = () => {
                 />
               </div>
 
-              <button className={styles.submit}>Submit</button>
-              <button className={styles.cancel}>Cancel</button>
+              <button className={styles.submit} type="sunmit">
+                Submit
+              </button>
+              <button className={styles.cancel} type="button">
+                Cancel
+              </button>
             </form>
           </div>
         </div>
