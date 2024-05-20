@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import Particle from "../components/design";
-import styles from "../styles/addfriends.module.css";
-import { useGetUsersQuery } from "@/src/features/auth/userApiSlice";
-import Loader from "@/components/Loader";
-import { useAddFriendMutation } from "@/src/features/auth/friendsApiSlice";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Particle from '../components/design';
+import styles from '../styles/addfriends.module.css';
+import { useGetUsersQuery } from '@/src/features/auth/userApiSlice';
+import Loader from '@/components/Loader';
+import { useAddFriendMutation } from '@/src/features/auth/friendsApiSlice';
+import { toast } from 'react-toastify';
 
 function AddFriends() {
   const router = useRouter();
@@ -22,14 +22,14 @@ function AddFriends() {
   }, [requestedUsers, users]);
 
   const handleSkipButton = () => {
-    router.push("/call");
+    router.push('/call');
   };
 
   const handleRequestBtn = async (id) => {
     try {
       await addFriend({ recipient: id }).unwrap();
       setRequestedUsers([...requestedUsers, id]);
-      toast.success("Request sent successfully");
+      toast.success('Request sent successfully');
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -47,10 +47,10 @@ function AddFriends() {
     <>
       <Particle />
       <div className={styles.containerAddfriend}>
-        <div className={styles["parent-div2"]}>
+        <div className={styles['parent-div2']}>
           <h1>Add Friends</h1>
         </div>
-        <div className={styles["parent-div"]}>
+        <div className={styles['parent-div']}>
           <div className={styles.cally}>
             <h3 className={styles.header}>Suggested</h3>
             {isLoading && <Loader />}
@@ -59,23 +59,23 @@ function AddFriends() {
               {users &&
                 users.map((user) => (
                   <div key={user._id}>
-                    <img
-                      src={user.image?.url || user.image}
-                      alt="Avatar"
-                    />
-                    {user.username}{" "}
+                    <img src={user.image?.url || user.image} alt='Avatar' width={30} height={30} />
+                    {user.username}{' '}
                     <button
                       onClick={() => handleRequestBtn(user._id)}
                       disabled={requestedUsers.includes(user._id)}
                       style={
                         requestedUsers.includes(user._id)
-                          ? { backgroundColor: "rgba(8, 72, 125, 0.5)", color: "white" }
+                          ? {
+                              backgroundColor: 'rgba(8, 72, 125, 0.5)',
+                              color: 'white',
+                            }
                           : {}
                       }
                     >
                       {requestedUsers.includes(user._id)
-                        ? "Request Sent"
-                        : "ADD"}
+                        ? 'Request Sent'
+                        : 'ADD'}
                     </button>
                   </div>
                 ))}
@@ -86,14 +86,14 @@ function AddFriends() {
             <div className={styles.con1}>
               <h3>Add by Username or ID</h3>
               <label>
-                <input type="number" placeholder="" required />
+                <input type='number' placeholder='' required />
               </label>
               <button onClick={handleContinue}>Add</button>
             </div>
             <div className={styles.con2}>
-              <img src="https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg" />
+              <img src='https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg' />
               <a
-                href="#"
+                href='#'
                 className={allRequestsSent ? styles.active : styles.inactive}
                 onClick={handleContinue}
               >
