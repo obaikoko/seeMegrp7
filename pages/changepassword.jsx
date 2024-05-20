@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/chagepassword.module.css";
+import styles from "../styles/changepassword.module.css";
 import Particle from "../components/design";
 
 const ChangePassword = () => {
