@@ -72,7 +72,7 @@ function UpdateFriends() {
                       width={50}
                       height={50}
                     /> */}
-                    {user.username}{' '}
+                    {user.sender.username}{' '}
                     <button onClick={() => acceptRequestBtn(user.sender)}>
                       {user.status === 'accepted' ? 'accepted' : 'Accept'}
                     </button>

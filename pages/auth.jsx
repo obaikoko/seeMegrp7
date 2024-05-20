@@ -62,7 +62,6 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegisterButton(e);
   };
 
   const handleRegisterClick = () => {
@@ -104,6 +103,10 @@ const Auth = () => {
         toast.error(error?.data?.message || error.message);
       }
     }
+  };
+
+  const handleGoogleSignUp = () => {
+    window.open('https://seeme-nga3.onrender.com/auth/google');
   };
 
   return (
@@ -156,7 +159,11 @@ const Auth = () => {
             </div>
             <p className={styles.continue}>Continue With</p>
             <Link href={'/auth/google'}>
-              <button type='button' className={styles['google-btn']}>
+              <button
+                onClick={handleGoogleSignUp}
+                type='button'
+                className={styles['google-btn']}
+              >
                 <img
                   src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030524/SeeMe/Group_cdzfut.svg'
                   alt='Google'
