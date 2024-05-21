@@ -80,6 +80,7 @@ function UpdateFriends() {
                       alt=''
                       width={50}
                       height={50}
+                      />
                     {user.username}{" "}
                     <button
                       onClick={() => acceptRequestBtn(user.sender)}
