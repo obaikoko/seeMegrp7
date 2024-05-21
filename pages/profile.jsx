@@ -103,15 +103,20 @@ const ProfileSetup = () => {
       <div className={styles["profile-right-section"]}>
         <div className={styles["fixed-width"]}>
           <div className={styles["profile-right-section-wrapper"]}>
-            <p>
+            <div className={styles.text}>
               {`Your User ID is ${user._id}`}
+              <img
+                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716280091/SeeMe/gravity-ui_copy_zwtqor.svg"
+                alt=""
+                className={styles.copy}
+              />
               <br />
               Friends can add you through this PIN
-            </p>
+            </div>
             <h2 className={styles["setprofiles"]}>Set Up Profile</h2>
             <div className={styles["profile-image-wrapper"]}>
               <img
-                src={user.image ? user.image.url || user.image : ""}
+                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/image1-removebg-preview_p69drm.png"
                 alt="Avatar"
               />
             </div>
@@ -120,6 +125,7 @@ const ProfileSetup = () => {
               type="file"
               onChange={handleImageChange}
             />
+
             <input
               className={styles.input}
               type="text"
