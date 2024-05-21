@@ -43,6 +43,7 @@ function AddFriends() {
     }
   };
 
+  console.log(users);
   return (
     <>
       <Particle />
