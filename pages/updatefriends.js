@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import Particle from "../components/design";
 import styles from "../styles/update.module.css";
@@ -10,6 +9,7 @@ import {
   useUpdateFriendsRequestMutation,
 } from "@/src/features/auth/friendsApiSlice";
 import { toast } from "react-toastify";
+
 
 function UpdateFriends() {
   const router = useRouter();
@@ -28,7 +28,7 @@ function UpdateFriends() {
     try {
       const res = await updateFriendsRequest({
         sender: id,
-        status: "accepted",
+        status: 'accepted',
       }).unwrap();
       refetch();
       toast.success(res);
@@ -40,7 +40,7 @@ function UpdateFriends() {
     try {
       const res = await updateFriendsRequest({
         sender: id,
-        status: "rejected",
+        status: 'rejected',
       }).unwrap();
       refetch();
       toast.success(res);
@@ -65,7 +65,7 @@ function UpdateFriends() {
             className={styles.logo}
           />
         </div>
-        <div className={styles["parent-div"]}>
+        <div className={styles['parent-div']}>
           <div className={styles.cally}>
             <p className={styles.header}>Friend Requests {<span>{}</span>}</p>
             {isLoading && <Loader />}
@@ -74,12 +74,12 @@ function UpdateFriends() {
               {usersFriends &&
                 usersFriends.map((user) => (
                   <div key={user._id}>
-                    {/* <img
-                      src={user.image?.url || user.iamge}
+                    <img
+                      className={styles.userImg}
+                      src={user.sender.image?.url || user.sender.image}
                       alt=''
                       width={50}
                       height={50}
-                    /> */}
                     {user.username}{" "}
                     <button
                       onClick={() => acceptRequestBtn(user.sender)}

@@ -59,7 +59,11 @@ function AddFriends() {
               {users &&
                 users.map((user) => (
                   <div key={user._id}>
-                    <img src={user.image?.url || user.image} alt='Avatar' width={30} height={30} />
+                    <img
+                      className={styles.userImg}
+                      src={user.image?.url || user.image}
+                      alt='Avatar'
+                    />
                     {user.username}{' '}
                     <button
                       onClick={() => handleRequestBtn(user._id)}
