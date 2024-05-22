@@ -159,17 +159,8 @@ const Auth = () => {
               <div className={styles.line}></div>
             </div>
             <p className={styles.continue}>Continue With</p>
-<<<<<<< HEAD
-            <Link href={'/auth/google'}>
-              <button
-                onClick={handleGoogleSignUp}
-                type='button'
-                className={styles['google-btn']}
-              >
-=======
             <Link href={"/auth/google"}>
               <button type="button" className={styles["google-btn"]}>
->>>>>>> develop
                 <img
                   src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030524/SeeMe/Group_cdzfut.svg"
                   alt="Google"

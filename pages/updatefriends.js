@@ -80,12 +80,6 @@ function UpdateFriends() {
                       alt=''
                       width={50}
                       height={50}
-<<<<<<< HEAD
-                    /> */}
-                    {user.sender.username}{' '}
-                    <button onClick={() => acceptRequestBtn(user.sender)}>
-                      {user.status === 'accepted' ? 'accepted' : 'Accept'}
-=======
                     />
                     <TimeFormat time={user.createdAt} />
                     {user.sender.username}{' '}
@@ -94,7 +88,6 @@ function UpdateFriends() {
                       // className={styles.accept}
                     >
                       {user.status === 'Accepted' ? 'Accepted' : 'Accept'}
->>>>>>> develop
                     </button>
                     <button onClick={() => rejectRequestBtn(user.sender)}>
                       Reject
