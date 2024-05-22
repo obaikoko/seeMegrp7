@@ -15,7 +15,7 @@ function UpdateFriends() {
   const router = useRouter();
 
   const { data: usersFriends, refetch, isLoading, error } = useGetFriendQuery();
-  console.log(usersFriends);
+ 
   const [
     updateFriendsRequest,
     {
@@ -48,6 +48,7 @@ function UpdateFriends() {
       toast.error(err?.data?.message || err.error);
     }
   };
+
 
   return (
     <>
