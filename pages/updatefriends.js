@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Particle from '../components/design';
-import styles from '../styles/addfriends.module.css';
+import styles from '../styles/update.module.css';
 import { useGetUsersQuery } from '@/src/features/auth/userApiSlice';
 import Loader from '@/components/Loader';
-// import AddFriendBtn from '@/components/AddFriendBtn';
 import {
   useGetFriendQuery,
   useUpdateFriendsRequestMutation,
 } from '@/src/features/auth/friendsApiSlice';
 import { toast } from 'react-toastify';
+import TimeFormat from '@/components/timeFormat';
 
 function UpdateFriends() {
   const router = useRouter();
@@ -55,26 +54,47 @@ function UpdateFriends() {
       <Particle />
       <div className={styles.containerAddfriend}>
         <div className={styles['parent-div2']}>
+          <img
+            src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030522/SeeMe/arrow-left_y1wsd8.svg'
+            width={30}
+            height={30}
+          />
           <h1>Friend Request</h1>
+          <img
+            src='https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg'
+            className={styles.logo}
+          />
         </div>
         <div className={styles['parent-div']}>
           <div className={styles.cally}>
-            <h3 className={styles.header}>Pending Request</h3>
+            <p className={styles.header}>Friend Requests {<span>{}</span>}</p>
             {isLoading && <Loader />}
 
             <>
               {usersFriends &&
                 usersFriends.map((user) => (
                   <div key={user._id}>
-                    {/* <img
-                      src={user.image?.url || user.iamge}
+                    <img
+                      className={styles.userImg}
+                      src={user.sender.image?.url || user.sender.image}
                       alt=''
                       width={50}
                       height={50}
+<<<<<<< HEAD
                     /> */}
                     {user.sender.username}{' '}
                     <button onClick={() => acceptRequestBtn(user.sender)}>
                       {user.status === 'accepted' ? 'accepted' : 'Accept'}
+=======
+                    />
+                    <TimeFormat time={user.createdAt} />
+                    {user.sender.username}{' '}
+                    <button
+                      onClick={() => acceptRequestBtn(user.sender)}
+                      // className={styles.accept}
+                    >
+                      {user.status === 'Accepted' ? 'Accepted' : 'Accept'}
+>>>>>>> develop
                     </button>
                     <button onClick={() => rejectRequestBtn(user.sender)}>
                       Reject
@@ -82,18 +102,6 @@ function UpdateFriends() {
                   </div>
                 ))}
             </>
-          </div>
-
-          <div className={styles.josh}>
-            <div className={styles.con1}>
-              <h3>Add by Username or ID</h3>
-              <label>
-                <input type='number' placeholder='' required />
-              </label>
-            </div>
-            <div className={styles.con2}>
-              <img src='https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg' />
-            </div>
           </div>
         </div>
       </div>
