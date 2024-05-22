@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/call.module.css";
 import Particle from "../components/design";
 import SimpleWebRTC from 'simplewebrtc';
+import WebRTCComponent from "@/components/WebRtcComponent";
 
 
 const Call = () => {
@@ -119,11 +120,12 @@ const Call = () => {
             alt="icon"
             className={styles.person}
           />
-          <img
+          <WebRTCComponent />
+          {/* <img
             src="https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg"
             alt="Call Image"
             className={styles.callImg}
-          />
+          /> */}
           <div className={styles.square}>
             <div className={styles.circle}></div>
             <p>You</p>
