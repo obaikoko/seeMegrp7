@@ -120,7 +120,7 @@ const Call = () => {
             alt="icon"
             className={styles.person}
           />
-          <WebRTCComponent />
+          {/* <WebRTCComponent /> */}
           {/* <img
             src="https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg"
             alt="Call Image"
