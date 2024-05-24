@@ -10,16 +10,23 @@ import { toast } from 'react-toastify';
 function AddFriends() {
   const router = useRouter();
   const [requestedUsers, setRequestedUsers] = useState([]);
-  const [allRequestsSent, setAllRequestsSent] = useState(false);
+  const [isAnyRequestSent, setIsAnyRequestSent] = useState(false);
   const [addFriend, { isLoading: loadingAddFriend, error: addFriendError }] =
     useAddFriendMutation();
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
 
   useEffect(() => {
-    if (users && requestedUsers.length === users.length) {
-      setAllRequestsSent(true);
+    const savedRequests = JSON.parse(localStorage.getItem('requestedUsers')) || [];
+    setRequestedUsers(savedRequests);
+    setIsAnyRequestSent(savedRequests.length > 0);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('requestedUsers', JSON.stringify(requestedUsers));
+    if (requestedUsers.length > 0) {
+      setIsAnyRequestSent(true);
     }
-  }, [requestedUsers, users]);
+  }, [requestedUsers]);
 
   const handleSkipButton = () => {
     router.push('/call');
@@ -28,7 +35,8 @@ function AddFriends() {
   const handleRequestBtn = async (id) => {
     try {
       await addFriend({ recipient: id }).unwrap();
-      setRequestedUsers([...requestedUsers, id]);
+      const updatedRequests = [...requestedUsers, id];
+      setRequestedUsers(updatedRequests);
       toast.success('Request sent successfully');
     } catch (err) {
       toast.error(err?.data?.message || err.error);
@@ -36,7 +44,7 @@ function AddFriends() {
   };
 
   const handleContinue = (e) => {
-    if (!allRequestsSent) {
+    if (!isAnyRequestSent) {
       e.preventDefault();
     } else {
       handleSkipButton();
@@ -99,7 +107,7 @@ function AddFriends() {
               <img src='https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg' />
               <a
                 href='#'
-                className={allRequestsSent ? styles.active : styles.inactive}
+                className={isAnyRequestSent ? styles.active : styles.inactive}
                 onClick={handleContinue}
               >
                 Continue
