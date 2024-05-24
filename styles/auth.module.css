@@ -429,7 +429,7 @@
   }
 }
 
-@media (max-width: 385px) {
+@media (max-width: 320px) {
   .container form {
     height: 100%;
     padding: 0 10px;
@@ -442,7 +442,7 @@
   }
   .container button,
   .container .google-btn {
-    width: 350px;
+    width: 300px;
     height: 45px;
     font-size: 11px;
     display: flex;
