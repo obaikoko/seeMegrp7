@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Particle from "../components/design";
-import styles from "../styles/update.module.css";
-import { useGetUsersQuery } from "@/src/features/auth/userApiSlice";
-import Loader from "@/components/Loader";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Particle from '../components/design';
+import styles from '../styles/update.module.css';
+import { useGetUsersQuery } from '@/src/features/auth/userApiSlice';
+import Loader from '@/components/Loader';
 import {
   useGetFriendQuery,
   useUpdateFriendsRequestMutation,
-} from "@/src/features/auth/friendsApiSlice";
-import { toast } from "react-toastify";
-
+} from '@/src/features/auth/friendsApiSlice';
+import { toast } from 'react-toastify';
+import TimeFormat from '@/components/timeFormat';
 
 function UpdateFriends() {
   const router = useRouter();
 
   const { data: usersFriends, refetch, isLoading, error } = useGetFriendQuery();
-  console.log(usersFriends);
+ 
   const [
     updateFriendsRequest,
     {
@@ -49,19 +49,20 @@ function UpdateFriends() {
     }
   };
 
+
   return (
     <>
       <Particle />
       <div className={styles.containerAddfriend}>
-        <div className={styles["parent-div2"]}>
+        <div className={styles['parent-div2']}>
           <img
-            src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030522/SeeMe/arrow-left_y1wsd8.svg"
+            src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030522/SeeMe/arrow-left_y1wsd8.svg'
             width={30}
             height={30}
           />
           <h1>Friend Request</h1>
           <img
-            src="https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg"
+            src='https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg'
             className={styles.logo}
           />
         </div>
@@ -80,18 +81,16 @@ function UpdateFriends() {
                       alt=''
                       width={50}
                       height={50}
-                      />
-                    {user.username}{" "}
+                    />
+                    <TimeFormat time={user.createdAt} />
+                    {user.sender.username}{' '}
                     <button
                       onClick={() => acceptRequestBtn(user.sender)}
-                      className={styles.accept}
+                      // className={styles.accept}
                     >
-                      {user.status === "Accepted" ? "Accepted" : "Accept"}
+                      {user.status === 'Accepted' ? 'Accepted' : 'Accept'}
                     </button>
-                    <button
-                      onClick={() => rejectRequestBtn(user.sender)}
-                      className={styles.reject}
-                    >
+                    <button onClick={() => rejectRequestBtn(user.sender)}>
                       Reject
                     </button>
                   </div>

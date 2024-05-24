@@ -2,54 +2,56 @@ import React, { useState } from "react";
 import styles from "../styles/call.module.css";
 import Particle from "../components/design";
 import Settings from "@/components/setting";
+import SimpleWebRTC from 'simplewebrtc';
+// import WebRTCComponent from "@/components/WebRtcComponent";
 
 const Call = () => {
   const DataItems = [
     {
       id: 1,
-      name: "James",
-      img: "https://res.cloudinary.com/duz7maquu/image/upload/v1716037111/SeeMe/Ellipse_6_mkpxi8.png",
+      name: 'James',
+      img: 'https://res.cloudinary.com/duz7maquu/image/upload/v1716037111/SeeMe/Ellipse_6_mkpxi8.png',
     },
     {
       id: 2,
-      name: "ChefChris",
-      img: "https://res.cloudinary.com/duz7maquu/image/upload/v1716044353/SeeMe/Ellipse_1_epa3ew.png",
+      name: 'ChefChris',
+      img: 'https://res.cloudinary.com/duz7maquu/image/upload/v1716044353/SeeMe/Ellipse_1_epa3ew.png',
     },
     {
       id: 3,
-      name: "DeeSylvia",
-      img: "https://res.cloudinary.com/duz7maquu/image/upload/v1716044353/SeeMe/Ellipse_1_1_azlva2.png",
+      name: 'DeeSylvia',
+      img: 'https://res.cloudinary.com/duz7maquu/image/upload/v1716044353/SeeMe/Ellipse_1_1_azlva2.png',
     },
     {
       id: 4,
-      name: "Musk",
-      img: "https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg",
+      name: 'Musk',
+      img: 'https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg',
     },
     {
       id: 5,
-      name: "Maduka",
-      img: "https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Maduka_e4yr38.jpg",
+      name: 'Maduka',
+      img: 'https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Maduka_e4yr38.jpg',
     },
     {
       id: 6,
-      name: "Gates",
-      img: "https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Gate_eq9eg9.jpg",
+      name: 'Gates',
+      img: 'https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Gate_eq9eg9.jpg',
     },
     {
       id: 7,
-      name: "Otedola",
-      img: "https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Otedola_pheeb0.jpg",
+      name: 'Otedola',
+      img: 'https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Otedola_pheeb0.jpg',
     },
   ];
 
   const SlideItem = ({ item }) => {
     return (
       <div className={styles.slideItem}>
-        <img className={styles.slideImg} src={item.img} alt="Image" />
+        <img className={styles.slideImg} src={item.img} alt='Image' />
         <span>{item.name}</span>
         <img
-          src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044676/SeeMe/tabler_dots_slidy2.png"
-          alt="Icon"
+          src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044676/SeeMe/tabler_dots_slidy2.png'
+          alt='Icon'
           className={styles.slidecIcon}
         />
       </div>
@@ -57,28 +59,28 @@ const Call = () => {
   };
 
   return (
-    <div className={styles["call-container"]}>
+    <div className={styles['call-container']}>
       <Particle />
       <div className={styles.settings}>
         <Settings />
       </div>
       <img
-        src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_copy_h0nuqb.svg"
-        alt="Logo"
+        src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_copy_h0nuqb.svg'
+        alt='Logo'
         className={styles.logo}
       />
-      <div className={styles["container-call"]}>
+      <div className={styles['container-call']}>
         {/* Slide section */}
         <div className={styles.slide}>
           <div className={styles.searchbar}>
             <img
-              src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044380/SeeMe/iconamoon_search-bold_htmrtx.svg"
+              src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044380/SeeMe/iconamoon_search-bold_htmrtx.svg'
               className={styles.icon1}
-              alt="Search Icon"
+              alt='Search Icon'
             />
             <input
-              type="text"
-              placeholder="Search Friends"
+              type='text'
+              placeholder='Search Friends'
               className={styles.inp}
             />
           </div>
@@ -90,23 +92,23 @@ const Call = () => {
           <div className={styles.btnSection}>
             <button className={styles.slideBtn}>
               <img
-                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044353/SeeMe/add-circle_nqizel.svg"
-                alt="Add friend"
+                src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044353/SeeMe/add-circle_nqizel.svg'
+                alt='Add friend'
                 className={styles.slidePhoto}
               />
               Add friend
             </button>
             <button className={styles.friendRequestBtn}>
               <img
-                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044649/SeeMe/profile-2user_wamym8.png"
-                alt="Request"
+                src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044649/SeeMe/profile-2user_wamym8.png'
+                alt='Request'
               />
               Friend Request
             </button>
             <button className={styles.slideBtn}>
               <img
-                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044675/SeeMe/solar_settings-bold_nk8stl.png"
-                alt="Setting"
+                src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044675/SeeMe/solar_settings-bold_nk8stl.png'
+                alt='Setting'
                 className={styles.slidePhoto}
               />
               Setting
@@ -117,40 +119,41 @@ const Call = () => {
         {/* Chat section */}
         <div className={styles.chat}>
           <img
-            src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044677/SeeMe/user-add_bmhnsr.png"
-            alt="icon"
+            src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044677/SeeMe/user-add_bmhnsr.png'
+            alt='icon'
             className={styles.person}
           />
-          <img
+          {/* <WebRTCComponent /> */}
+          {/* <img
             src="https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg"
             alt="Call Image"
             className={styles.callImg}
-          />
+          /> */}
           <div className={styles.square}>
             <div className={styles.circle}></div>
             <p>You</p>
           </div>
           <div className={styles.feature}>
             <img
-              src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044381/SeeMe/octicon_unmute-16_wg2xcv.png"
-              alt="Speaker"
+              src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044381/SeeMe/octicon_unmute-16_wg2xcv.png'
+              alt='Speaker'
               className={styles.navIcon}
             />
             <img
-              src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044354/SeeMe/fluent_camera-off-16-filled_o8ykuc.png"
-              alt="Off camera"
+              src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044354/SeeMe/fluent_camera-off-16-filled_o8ykuc.png'
+              alt='Off camera'
               className={styles.navIcon}
             />
             <div>
               <img
-                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044356/SeeMe/Frame_35_uexfcb.png"
-                alt="Mic button"
+                src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044356/SeeMe/Frame_35_uexfcb.png'
+                alt='Mic button'
                 className={styles.micButton}
               />
             </div>
             <img
-              src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044380/SeeMe/ion_call_do3u3t.png"
-              alt="Call icon"
+              src='https://res.cloudinary.com/duz7maquu/image/upload/v1716044380/SeeMe/ion_call_do3u3t.png'
+              alt='Call icon'
               className={styles.callIcon}
             />
           </div>
