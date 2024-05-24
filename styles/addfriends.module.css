@@ -12,6 +12,10 @@
   padding-bottom: 10px;
 }
 
+.containerAddfriend a {
+  text-decoration: none;
+}
+
 .containerAddfriend h3 {
   font-size: 25px;
   font-weight: 600;
@@ -84,7 +88,7 @@
   flex-direction: column;
   align-items: center;
   display: flex;
-  gap: 30px;
+  gap: 25px;
 }
 
 .con1 button {
@@ -101,12 +105,11 @@
 .con1 label input {
   display: flex;
   width: 260px;
-  height: 47px;
+  height: 45px;
   padding: 10px 24px;
   align-items: center;
   border-radius: 10px;
   border: none;
-  border-radius: 10px;
   background: rgba(8, 72, 125, 0.2);
 }
 
@@ -138,7 +141,6 @@
   font-weight: 700;
   font-size: 18px;
   opacity: 0.2;
-  margin: 5px 0;
   cursor: pointer;
 }
 

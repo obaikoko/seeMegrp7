@@ -11,6 +11,10 @@
   z-index: 1000;
 }
 
+.call-container .settings {
+  display: none;
+}
+
 .container-call {
   display: flex;
   align-items: center;

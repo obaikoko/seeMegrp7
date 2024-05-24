@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/call.module.css";
 import Particle from "../components/design";
+import Settings from "@/components/setting";
 
 const Call = () => {
   const DataItems = [
@@ -58,6 +59,9 @@ const Call = () => {
   return (
     <div className={styles["call-container"]}>
       <Particle />
+      <div className={styles.settings}>
+        <Settings />
+      </div>
       <img
         src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_copy_h0nuqb.svg"
         alt="Logo"
