@@ -19,8 +19,8 @@ function UpdateFriends() {
   const [
     updateFriendsRequest,
     {
-      // isLoading: loadingUpdateFriendsRequest,
-      // error: updateFriendsRequestError,
+      isLoading: loadingUpdateFriendsRequest,
+      error: updateFriendsRequestError,
     },
   ] = useUpdateFriendsRequestMutation();
 
