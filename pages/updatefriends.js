@@ -52,6 +52,7 @@ function UpdateFriends() {
   return (
     <>
       <Particle />
+
       <div className={styles.containerAddfriend}>
         <div className={styles['parent-div2']}>
           <img
@@ -65,10 +66,10 @@ function UpdateFriends() {
             className={styles.logo}
           />
         </div>
+        {isLoading && <Loader />}
         <div className={styles['parent-div']}>
           <div className={styles.cally}>
-            <p className={styles.header}>Friend Requests {<span>{}</span>}</p>
-            {isLoading && <Loader />}
+            <p className={styles.header}>Friend Requests</p>
 
             <>
               {usersFriends &&
