@@ -137,7 +137,7 @@
 .profile-right-section-wrapper .edit {
   width: 45px;
   height: 45px;
-  border-radius: 20px;
+  border-radius: 21px;
   background: #094272;
   color: var(--bg-primary);
   position: absolute;
@@ -231,7 +231,7 @@
 
 @media (max-width: 450px){
   .profile-right-section-wrapper{
-    padding: 0 10xpx;
+    padding: 0 10px;
   }
   .fixed-width{
     width: 100%;

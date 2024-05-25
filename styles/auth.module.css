@@ -297,21 +297,21 @@
     width: 65%;
     margin: 25px 0;
   }
-  .container .terms{
+  .container .terms {
     font-size: 15px;
   }
   .container .line {
     width: 250px;
     margin-top: 35px;
   }
-  .sign span{
+  .sign span {
     font-size: 40px;
   }
-  .container h1{
+  .container h1 {
     margin-bottom: 30px;
     font-size: 40px;
   }
-  .container input{
+  .container input {
     padding: 20px 15px;
     font-size: 18px;
   }
@@ -319,43 +319,43 @@
     font-size: 20px;
     margin: 35px 0;
   }
-  .toggle-panel .write-up img{
+  .toggle-panel .write-up img {
     width: 80%;
     margin-bottom: 10px;
   }
-  .toggle-panel .write-up p{
+  .toggle-panel .write-up p {
     font-size: 25px;
     line-height: 1.5;
   }
-  .toggle-panel .image img{
+  .toggle-panel .image img {
     width: 100%;
     margin-top: 20px;
   }
-  .account span{
+  .account span {
     font-size: 17px;
   }
-  .container .forget-pswd{
+  .container .forget-pswd {
     font-size: 17px;
     margin: 10px 0 30px;
   }
-  .container h2{
+  .container h2 {
     font-size: 35px;
   }
 }
 
-@media (max-width: 850px){
-  .container{
+@media (max-width: 850px) {
+  .container {
     width: 100%;
     height: 100vh;
   }
-  .sign-up{
+  .sign-up {
     position: absolute;
     left: -100%;
   }
-  .toggle-container{
+  .toggle-container {
     display: none;
   }
-  .form-container{
+  .form-container {
     width: 100%;
   }
   .container button,
@@ -368,26 +368,26 @@
   .container a {
     width: 43%;
   }
-  .container input{
+  .container input {
     width: 85%;
   }
-  .container .forget-pswd{
+  .container .forget-pswd {
     width: 85%;
   }
   .container .line {
     width: 250px;
     margin-top: 35px;
   }
-  .sign span{
+  .sign span {
     font-size: 30px;
   }
-  .form-container .agree{
+  .form-container .agree {
     width: 40%;
   }
 }
 
 @media (max-width: 480px) {
-  .container{
+  .container {
     width: 100%;
     height: 100vh;
   }
@@ -395,11 +395,11 @@
     height: 100%;
     padding: 0 10px;
   }
-  .container input{
+  .container input {
     width: 100%;
     height: 50px;
   }
-  .container .forget-pswd{
+  .container .forget-pswd {
     width: 95%;
   }
   .container button,
@@ -415,13 +415,13 @@
     width: 100px;
     margin-top: 20px;
   }
-  .sign span{
+  .sign span {
     font-size: 15px;
   }
   .container a {
     width: 100%;
   }
-  .container .agree{
+  .container .agree {
     width: 80%;
   }
   .container p {
@@ -429,16 +429,10 @@
   }
 }
 
-@media (max-width: 385px) {
+@media (max-width: 375px) {
   .container form {
     height: 100%;
     padding: 0 10px;
-  }
-  .container a {
-    width: 100%;
-  }
-  .container h1{
-    font-size: 20px;
   }
   .container button,
   .container .google-btn {
@@ -449,10 +443,35 @@
     justify-content: center;
     align-items: center;
   }
-  .container .agree{
+  .container a {
+    width: 100%;
+  } 
+}
+
+@media (max-width: 320px) {
+  .container form {
+    height: 100%;
+    padding: 0 10px;
+  }
+  .container a {
+    width: 100%;
+  }
+  .container h1 {
+    font-size: 20px;
+  }
+  .container button,
+  .container .google-btn {
+    width: 290px;
+    height: 45px;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container .agree {
     width: 75%;
   }
-  .form-container .terms{
+  .form-container .terms {
     font-size: 7.5px;
   }
   .account {
