@@ -63,7 +63,6 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegisterButton(e);
   };
 
   const handleRegisterClick = () => {
@@ -105,6 +104,10 @@ const Auth = () => {
         toast.error(error?.data?.message || error.message);
       }
     }
+  };
+
+  const handleGoogleSignUp = () => {
+    window.open('https://seeme-nga3.onrender.com/auth/google');
   };
 
   return (
@@ -202,7 +205,7 @@ const Auth = () => {
               className={styles["sign-btn"]}
               onClick={handleLoginButton}
             >
-              {loadingLogin ? <Loader /> : "Sign in"}
+              {loadingLogin ? <Loader /> : "Sign In"}
             </button>
             <div className={styles.sign}>
               <div className={styles.line}></div>

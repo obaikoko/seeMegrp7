@@ -14,7 +14,7 @@
   --bg-gradient-1: var(
     --gradient,
     linear-gradient(
-      272deg,
+      90deg,
       rgba(32, 84, 101, 0.37) 3.85%,
       #2f86c6 44.03%,
       rgba(45, 153, 199, 0.74) 80.29%,
@@ -28,6 +28,7 @@
   --bg-secondary: #08487d;
   --bg-color-1: #eee;
   --bg-color-2: #333;
+  --link-color: #08487d;
 }
 
 body {
@@ -57,4 +58,18 @@ input::-webkit-outer-spin-button {
 
 ::-webkit-scrollbar {
   width: 0;
+}
+
+@media (min-width: 1440px){
+  body{
+    display: block;
+    background: none;
+  }
+}
+
+@media (max-width: 850px){
+  body{
+    display: inline-block;
+    background: none;
+  }
 }
