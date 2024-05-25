@@ -454,14 +454,14 @@
     padding: 0 10px;
   }
   .container a {
-    width: 100%;
+    width: 95%;
   }
   .container h1 {
     font-size: 20px;
   }
   .container button,
   .container .google-btn {
-    width: 290px;
+    width: 285px;
     height: 45px;
     font-size: 11px;
     display: flex;
