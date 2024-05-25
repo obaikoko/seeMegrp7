@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/call.module.css';
 import Particle from '../components/design';
-import SimpleWebRTC from 'simplewebrtc';
-// import WebRTCComponent from "@/components/WebRtcComponent";
+import WebRTCComponent from '@/components/WebRtcComponent';
 
 const Call = () => {
   const DataItems = [
