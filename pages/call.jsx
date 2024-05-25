@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import styles from '../styles/call.module.css';
-import Particle from '../components/design';
+import React, { useState } from "react";
+import styles from "../styles/call.module.css";
+import Particle from "../components/design";
+import Settings from "@/components/setting";
 import Router, { useRouter } from 'next/router';
 // import SimpleWebRTC from 'simplewebrtc';
 // import WebRTCComponent from "@/components/WebRtcComponent";
@@ -71,6 +72,9 @@ const handleFriendRqt = () =>{
   return (
     <div className={styles['call-container']}>
       <Particle />
+      <div className={styles.settings}>
+        <Settings />
+      </div>
       <img
         src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_copy_h0nuqb.svg'
         alt='Logo'
