@@ -163,7 +163,7 @@ const Auth = () => {
               <div className={styles.line}></div>
             </div>
             <p className={styles.continue}>Continue With</p>
-            {/* <GoogleSign/> */}
+            <GoogleSign/>
             <div className={styles.account}>
               <span>Already have an account? </span>
               <p className={styles.sign} onClick={handleLoginClick}>

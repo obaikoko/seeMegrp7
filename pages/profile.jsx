@@ -147,8 +147,8 @@ const ProfileSetup = () => {
                 {isLoading ? <Loader /> : "Save"}
               </button>
 
-              <button className={styles.button2}>
-                {isLoading ? <Loader /> : "Continue"}
+              <button className={styles.button2} >
+                Continue
               </button>
             </div>
           </div>

@@ -135,14 +135,14 @@
 }
 
 .profile-right-section-wrapper .edit {
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   border-radius: 21px;
   background: #094272;
   color: var(--bg-primary);
   position: absolute;
-  right: 22%;
-  top: 60%;
+  right: 20%;
+  top: 70%;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }

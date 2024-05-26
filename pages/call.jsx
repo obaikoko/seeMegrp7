@@ -3,6 +3,7 @@ import styles from "../styles/call.module.css";
 import Particle from "../components/design";
 import Settings from "@/components/setting";
 import Router, { useRouter } from "next/router";
+import Web from "@/components/web";
 // import SimpleWebRTC from 'simplewebrtc';
 // import WebRTCComponent from "@/components/WebRtcComponent";
 
@@ -136,6 +137,9 @@ const Call = () => {
             alt="icon"
             className={styles.person}
           />
+          <div className="callImg">
+            {/* <Web /> */}
+          </div>
           {/* <WebRTCComponent /> */}
           {/* <img
             src="https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg"
