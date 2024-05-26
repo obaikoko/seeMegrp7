@@ -54,13 +54,10 @@
 //         ]
 //       });
 //     } catch (error) {
-    
+
 //       console.log(error);
 //     }
 //   };
-
-
-  
 
 //   return (
 //     <div>
@@ -75,7 +72,7 @@
 //         <input type="text" name="to_address" placeholder="Address:"/>
 //         <input type="submit" value="Send Transaction" />
 //       </form>
-      
+
 //      <hr></hr>
 
 //      <form onSubmit="{productPicker}">
@@ -83,7 +80,6 @@
 //         <label>
 //             Pick your Product:
 //             <select>
-
 
 // <option value="product1">Laptop</option>
 // <option value="product2">Car</option>

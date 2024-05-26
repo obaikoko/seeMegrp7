@@ -10,11 +10,11 @@ import {
   useForgetPasswordMutation,
   useLoginMutation,
   useRegisterMutation,
-} from '../src/features/auth/userApiSlice';
-import styles from '../styles/auth.module.css';
-import Loader from '@/components/Loader.jsx';
+} from "../src/features/auth/userApiSlice";
+import styles from "../styles/auth.module.css";
+import Loader from "@/components/Loader.jsx";
 //import GoogleSign from '@/components/GoogleSign.jsx';
-import axios from 'axios';
+import axios from "axios";
 const Auth = () => {
   const [login, { isLoading: loadingLogin }] = useLoginMutation();
   const [register, { isLoading: loadingRegister }] = useRegisterMutation();
@@ -60,10 +60,10 @@ const Auth = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const handleForgotpassbtn = () =>{
-      router.push('/forgetpassword') 
+  const handleForgotpassbtn = () => {
+    router.push("/forgetpassword");
     // router.push('/forgetpassword')
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -111,7 +111,7 @@ const Auth = () => {
   };
 
   const handleGoogleSignUp = () => {
-    window.open('https://seeme-nga3.onrender.com/auth/google');
+    window.open("https://seeme-nga3.onrender.com/auth/google");
   };
 
   return (
@@ -192,7 +192,7 @@ const Auth = () => {
               onChange={handleChange}
               autoComplete="current-password"
             />
-            <a onClick={handleForgotpassbtn} className={styles['forget-pswd']}>
+            <a onClick={handleForgotpassbtn} className={styles["forget-pswd"]}>
               Forgot Password?
             </a>
             <button
