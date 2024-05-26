@@ -24,7 +24,7 @@ const ProfileSetup = () => {
     username: userInfo?.username || '',
   });
   const { username } = formData;
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const [updateProfile, { isLoading }] = useProfileMutation();
 
@@ -122,7 +122,7 @@ const ProfileSetup = () => {
             <h2 className={styles['setprofiles']}>Set Up Profile</h2>
             <div className={styles['profile-image-wrapper']}>
               <img
-                src={userInfo && userInfo.image.url}
+                // src={userInfo && userInfo.image.url}
                 // alt="Avatar"
               />
               <CiEdit className={styles.edit} onClick={handleIconClick} />

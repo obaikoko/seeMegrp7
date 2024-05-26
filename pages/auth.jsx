@@ -7,14 +7,14 @@ import { useDispatch } from "react-redux";
 import Particle from "../components/design.jsx";
 import { setCredentials } from "../src/features/auth/authSlice";
 import {
+  useForgetPasswordMutation,
   useLoginMutation,
   useRegisterMutation,
-} from "../src/features/auth/userApiSlice";
-import styles from "../styles/auth.module.css";
-import Loader from "@/components/Loader.jsx";
-
-
-
+} from '../src/features/auth/userApiSlice';
+import styles from '../styles/auth.module.css';
+import Loader from '@/components/Loader.jsx';
+import GoogleSign from '@/components/GoogleSign.jsx';
+import axios from 'axios';
 const Auth = () => {
   const [login, { isLoading: loadingLogin }] = useLoginMutation();
   const [register, { isLoading: loadingRegister }] = useRegisterMutation();
@@ -60,6 +60,10 @@ const Auth = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  const handleForgotpassbtn = () =>{
+      router.push('/forgetpassword') 
+    // router.push('/forgetpassword')
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -159,16 +163,7 @@ const Auth = () => {
               <div className={styles.line}></div>
             </div>
             <p className={styles.continue}>Continue With</p>
-            <Link href={"/auth/google"}>
-              <button type="button" className={styles["google-btn"]}>
-                <img
-                  src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030524/SeeMe/Group_cdzfut.svg"
-                  alt="Google"
-                />
-                Google
-              </button>
-            </Link>
-
+            <GoogleSign/>
             <div className={styles.account}>
               <span>Already have an account? </span>
               <p className={styles.sign} onClick={handleLoginClick}>
@@ -197,7 +192,7 @@ const Auth = () => {
               onChange={handleChange}
               autoComplete="current-password"
             />
-            <a href="#" className={styles["forget-pswd"]}>
+            <a onClick={handleForgotpassbtn} className={styles['forget-pswd']}>
               Forgot Password?
             </a>
             <button
@@ -213,15 +208,7 @@ const Auth = () => {
               <div className={styles.line}></div>
             </div>
             <p className={styles.continue}>Continue With</p>
-            <Link href={"/auth/google"}>
-              <button type="button" className={styles["google-btn"]}>
-                <img
-                  src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030524/SeeMe/Group_cdzfut.svg"
-                  alt="Google"
-                />
-                Google
-              </button>
-            </Link>
+             <GoogleSign/>
             <div className={styles.account}>
               <span className={styles["txt-ac"]}>Don't have an account? </span>
               <p className={styles.sign} onClick={handleRegisterClick}>
