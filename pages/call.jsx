@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import styles from "../styles/call.module.css";
 import Particle from "../components/design";
 import Settings from "@/components/setting";
-// import Web from "@/components/web";
-import Router, { useRouter } from 'next/router';
+import Router, { useRouter } from "next/router";
 // import SimpleWebRTC from 'simplewebrtc';
 // import WebRTCComponent from "@/components/WebRtcComponent";
 
 const Call = () => {
-const router = useRouter();
+  const router = useRouter();
 
-const handleAddFriend = () =>{
-  router.push('/addfriends')
-}
-const handleFriendRqt = () =>{
-  router.push('/updatefriends')
-}
-  
+  const handleAddFriend = () => {
+    router.push("/addfriends");
+  };
+  const handleFriendRqt = () => {
+    router.push("/updatefriends");
+  };
 
   const DataItems = [
     {
@@ -110,7 +108,10 @@ const handleFriendRqt = () =>{
               />
               Add friend
             </button>
-            <button onClick={handleFriendRqt} className={styles.friendRequestBtn}>
+            <button
+              onClick={handleFriendRqt}
+              className={styles.friendRequestBtn}
+            >
               <img
                 src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044649/SeeMe/profile-2user_wamym8.png"
                 alt="Request"
@@ -135,11 +136,7 @@ const handleFriendRqt = () =>{
             alt="icon"
             className={styles.person}
           />
-
           {/* <WebRTCComponent /> */}
-          <div className={styles.callImg}>
-            {/* <Web /> */}
-          </div>
           {/* <img
             src="https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg"
             alt="Call Image"
