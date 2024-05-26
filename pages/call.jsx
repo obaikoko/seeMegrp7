@@ -137,15 +137,9 @@ const Call = () => {
             alt="icon"
             className={styles.person}
           />
-          <div className="callImg">
-            {/* <Web /> */}
+          <div className={styles.callImg}>
+            {/* <WebRTCComponent /> */}
           </div>
-          {/* <WebRTCComponent /> */}
-          {/* <img
-            src="https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg"
-            alt="Call Image"
-            className={styles.callImg}
-          /> */}
           <div className={styles.square}>
             <div className={styles.circle}></div>
             <p>You</p>
