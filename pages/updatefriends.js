@@ -79,6 +79,7 @@ function UpdateFriends() {
               {usersFriends &&
                 usersFriends.map((user) => (
                   <div key={user._id}>
+            
                     <img
                       className={styles.userImg}
                       src={user.sender.image?.url || user.sender.image}
@@ -86,15 +87,16 @@ function UpdateFriends() {
                       width={50}
                       height={50}
                     />
-                    <TimeFormat time={user.createdAt} />
                     {user.sender.username}{' '}
+                    <br/>
+                    <TimeFormat   time={user.createdAt} />
                     <button
                       onClick={() => acceptRequestBtn(user.sender)}
                       // className={styles.accept}
                     >
-                      {user.status === 'Accepted' ? 'Accepted' : 'Accept'}
+                      {user.status === 'accepted' ? 'accepted' : 'Accept'}
                     </button>
-                    <button onClick={() => rejectRequestBtn(user.sender)}>
+                    <button className={styles.reject} onClick={() => rejectRequestBtn(user.sender)}>
                       Reject
                     </button>
                   </div>

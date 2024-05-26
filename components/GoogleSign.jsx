@@ -30,11 +30,10 @@ const GoogleSign = () => {
                     const user = response.data;
                     console.log(user);
                    
-                    router.push('/call');
+                    router.push('/profile');
                 } catch (error) {
                 
                     if (error.response && error.response.status === 400) { 
-                        // Attempt to log in the user
                         const loginResponse = await axios.post('https://seeme-nga3.onrender.com/api/users/auth', {
                             email: userProfile.email,
                             password: process.env.NEXT_PUBLIC_PASSWORD,

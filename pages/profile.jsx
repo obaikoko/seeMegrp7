@@ -53,6 +53,9 @@ const ProfileSetup = () => {
         "base64"
       );
     });
+    const handleCont = () =>{
+      router.push('/addfriends')
+    }
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
@@ -121,7 +124,7 @@ const ProfileSetup = () => {
             <h2 className={styles["setprofiles"]}>Set Up Profile</h2>
             <div className={styles["profile-image-wrapper"]}>
               <img
-                // src={user.image ? user.image.url || user.image : ''}
+                src={user.image ? user.image.url || user.image : ''}
                 alt="Avatar"
               />
               <CiEdit className={styles.edit} onClick={handleIconClick} />
@@ -147,8 +150,8 @@ const ProfileSetup = () => {
                 {isLoading ? <Loader /> : "Save"}
               </button>
 
-              <button className={styles.button2}>
-                {isLoading ? <Loader /> : "Continue"}
+              <button onClick={handleCont} className={styles.button2}>
+                Continue
               </button>
             </div>
           </div>

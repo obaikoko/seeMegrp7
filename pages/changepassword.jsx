@@ -32,6 +32,7 @@ const ChangePassword = () => {
     e.preventDefault();
     if (password !== password2){
       toast.error("Password doesn't match")
+      return;
     }
     try {
       await updateProfile({
