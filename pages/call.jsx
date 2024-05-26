@@ -3,9 +3,21 @@ import styles from "../styles/call.module.css";
 import Particle from "../components/design";
 import Settings from "@/components/setting";
 // import Web from "@/components/web";
+import Router, { useRouter } from 'next/router';
+// import SimpleWebRTC from 'simplewebrtc';
 // import WebRTCComponent from "@/components/WebRtcComponent";
 
 const Call = () => {
+const router = useRouter();
+
+const handleAddFriend = () =>{
+  router.push('/addfriends')
+}
+const handleFriendRqt = () =>{
+  router.push('/updatefriends')
+}
+  
+
   const DataItems = [
     {
       id: 1,
@@ -90,7 +102,7 @@ const Call = () => {
             ))}
           </div>
           <div className={styles.btnSection}>
-            <button className={styles.slideBtn}>
+            <button onClick={handleAddFriend} className={styles.slideBtn}>
               <img
                 src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044353/SeeMe/add-circle_nqizel.svg"
                 alt="Add friend"
@@ -98,7 +110,7 @@ const Call = () => {
               />
               Add friend
             </button>
-            <button className={styles.friendRequestBtn}>
+            <button onClick={handleFriendRqt} className={styles.friendRequestBtn}>
               <img
                 src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044649/SeeMe/profile-2user_wamym8.png"
                 alt="Request"
@@ -123,6 +135,7 @@ const Call = () => {
             alt="icon"
             className={styles.person}
           />
+
           {/* <WebRTCComponent /> */}
           <div className={styles.callImg}>
             {/* <Web /> */}

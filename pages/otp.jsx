@@ -1,52 +1,43 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { RecoveryContext } from "../components/recoverycontext";
 import Particle from "../components/design";
 import styles from "../styles/otp.module.css";
-
+import { useSelector } from "react-redux";
+import { useValidateOTPMutation } from "@/src/features/auth/userApiSlice";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "@/src/features/auth/authSlice";
 const OTP = () => {
-  const { email, otp, setPage } = useContext(RecoveryContext);
-  const [timerCount, setTimer] = useState(60);
-  const [OTPinput, setOTPinput] = useState([0, 0, 0, 0, 0, 0]);
-  const [disable, setDisable] = useState(true);
+  const {userInfo} = useSelector(state => state.auth);
+  const [validate, {isLoading}] = useValidateOTPMutation();
+  const [ user, setUser] = useState('');
+  const [otp,setOtp] = useState('')
   const router = useRouter();
-
-  const resendOTP = async () => {
-    if (disable) return;
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    setUser(userInfo)
+  },[userInfo])
+  const validateOTP = async(e) => {
+    e.preventDefault()
     try {
-      await axios.post("#", { OTP: otp, recipient_email: email });
-      setDisable(true);
-      alert("A new OTP has successfully been sent to your email.");
-      setTimer(60);
+      const res= await  validate({email:user.email, newPassword:'Group@07', otp}).unwrap(); 
+           
+      router.push('/changepassword')
+      dispatch(setCredentials(res))
+      toast.success("OTP has been confirmed")
     } catch (error) {
-      console.log(error);
+      toast.error(error?.data?.message || error.message);
     }
-  };
-
-  const verifyOTP = () => {
-    if (parseInt(OTPinput.join("")) === otp) {
-      setPage("reset");
-      return;
-    }
-    alert(
-      "The code you have entered is not correct, try again or re-send the link"
-    );
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((lastTimerCount) => {
-        if (lastTimerCount <= 1) {
-          clearInterval(interval);
-          setDisable(false);
-        }
-        return lastTimerCount - 1;
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [disable]);
+  }
+  const handleChange =(e) =>{
+    setOtp(e.target.value)
+  }
+  
+  
+  
 
   return (
+    <>
     <div className={styles["password-main-container"]} id="container">
       <Particle />
       <div className={styles["password-container"]}>
@@ -56,7 +47,7 @@ const OTP = () => {
               src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_og2nrm.svg"
               alt="Layer 3"
             />
-            <h2>Chill, we've got you!</h2>
+            <h2>Chill, we've got you !</h2>
           </div>
           <div className={styles.image}>
             <img
@@ -67,7 +58,7 @@ const OTP = () => {
         </div>
 
         <div className={styles["password-form-container"]}>
-          <form className={styles["password-form-content"]}>
+          <form className={styles["password-form-content"]} onSubmit={validateOTP}>
             <div className={styles["forget-text"]}>
               <div className={styles.icon}>
                 <img
@@ -75,48 +66,35 @@ const OTP = () => {
                   alt="Arrow Left"
                 />
               </div>
-              <h1>Enter the OTP</h1>
+              <h1>Forgot your password?</h1>
             </div>
 
-            <div className={styles["otp-text"]}>
+            <div className={styles.text}>
               <p>
-                We've sent you an OTP to your gmail address example10@gmail.com
+                {`We've sent the OTP to your email address `}
               </p>
             </div>
-            <div className={styles["otp-input"]}>
-              {OTPinput.map((_, index) => (
-                <div key={index}>
-                  <input
-                    maxLength="1"
-                    type="text"
-                    onChange={(e) => {
-                      const newOTPinput = [...OTPinput];
-                      newOTPinput[index] = e.target.value;
-                      setOTPinput(newOTPinput);
-                    }}
-                  />
-                </div>
-              ))}
+
+            <div className={styles["box-icon"]}>
+              <img
+                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030530/SeeMe/sms_qjdq2o.svg"
+                alt="SMS Icon"
+              />
+            </div>
+            <div className={styles["email-input"]}>
+              <input 
+              type="text" 
+              placeholder="Enter otp"
+              value={otp}
+              onChange={handleChange}/>
             </div>
 
-            <button type="button" className={styles.verify} onClick={verifyOTP}>
-              Verify
-            </button>
-            <div className={styles["input-box"]}>
-              <input type="email" placeholder="Email Verification" required />
-            </div>
-            <button
-              type="button"
-              className={styles.cancel}
-              onClick={resendOTP}
-              disabled={disable}
-            >
-              Resend OTP
-            </button>
+            <button type="submit" className={styles.submit}>SignUp</button>
           </form>
         </div>
       </div>
     </div>
+  </>
   );
 };
 

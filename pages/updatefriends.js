@@ -19,8 +19,8 @@ function UpdateFriends() {
   const [
     updateFriendsRequest,
     {
-      // isLoading: loadingUpdateFriendsRequest,
-      // error: updateFriendsRequestError,
+      isLoading: loadingUpdateFriendsRequest,
+      error: updateFriendsRequestError,
     },
   ] = useUpdateFriendsRequestMutation();
 
@@ -48,6 +48,9 @@ function UpdateFriends() {
       toast.error(err?.data?.message || err.error);
     }
   };
+  const routerBtn = () => {
+    router.push('/call')
+  }
 
 
   return (
@@ -56,6 +59,7 @@ function UpdateFriends() {
       <div className={styles.containerAddfriend}>
         <div className={styles['parent-div2']}>
           <img
+          onClick={routerBtn}
             src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030522/SeeMe/arrow-left_y1wsd8.svg'
             width={30}
             height={30}
