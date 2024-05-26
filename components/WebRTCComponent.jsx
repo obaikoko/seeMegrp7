@@ -1,99 +1,117 @@
-// import React, { useEffect, useRef, useState } from 'react';
-// import io from 'socket.io-client';
-// import SimplePeer from 'simple-peer';
+import React, { useEffect, useRef, useState } from "react";
+import io from "socket.io-client";
+import SimplePeer from "simple-peer";
 
-// const WebRTCComponent = () => {
-//   const [peers, setPeers] = useState([]);
-//   const socketRef = useRef();
-//   const localVideoRef = useRef();
-//   const remoteVideosRef = useRef();
-//   const roomName = 'test_room'; // Replace with your room name
+const WebRTCComponent = () => {
+  const [peers, setPeers] = useState([]);
+  const socketRef = useRef();
+  const localVideoRef = useRef();
+  const remoteVideosRef = useRef();
+  const roomName = "test_room"; // Replace with your room name
+  const signalingServerUrl = "http://localhost:5800"; // Replace with your signaling server URL
 
-//   const signalingServerUrl = 'http://localhost:5000'; // Replace with your signaling server URL
+  useEffect(() => {
+    socketRef.current = io(signalingServerUrl);
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then((stream) => {
+        localVideoRef.current.srcObject = stream;
 
-//   useEffect(() => {
-//     socketRef.current = io(signalingServerUrl);
-//     navigator.mediaDevices
-//       .getUserMedia({ video: true, audio: true })
-//       .then((stream) => {
-//         localVideoRef.current.srcObject = stream;
+        socketRef.current.emit("join", roomName); // Join the room
 
-//         socketRef.current.emit('join', roomName); // Join the room
+        socketRef.current.on("all users", (users) => {
+          const peers = [];
+          users.forEach((userId) => {
+            const peer = createPeer(userId, socketRef.current.id, stream);
+            peers.push({ peerID: userId, peer });
+          });
+          setPeers(peers);
+        });
 
-//         socketRef.current.on('signal', ({ signal, from }) => {
-//           const peerIndex = peers.findIndex((peer) => peer.peerID === from);
-//           if (peerIndex !== -1) {
-//             peers[peerIndex].peer.signal(signal);
-//           } else {
-//             const peer = new SimplePeer({
-//               initiator: false,
-//               trickle: false,
-//               stream: stream,
-//             });
+        socketRef.current.on("user joined", (payload) => {
+          const peer = addPeer(payload.signal, payload.callerID, stream);
+          setPeers((peers) => [...peers, { peerID: payload.callerID, peer }]);
+        });
 
-//             peer.on('signal', (signal) => {
-//               socketRef.current.emit('signal', {
-//                 roomId: roomName,
-//                 signalData: signal,
-//                 to: from,
-//               });
-//             });
+        socketRef.current.on("receiving returned signal", (payload) => {
+          const item = peers.find((p) => p.peerID === payload.id);
+          item.peer.signal(payload.signal);
+        });
 
-//             peer.on('stream', (remoteStream) => {
-//               const remoteVideo = document.createElement('video');
-//               remoteVideo.srcObject = remoteStream;
-//               remoteVideo.autoplay = true;
-//               remoteVideo.playsInline = true;
-//               remoteVideosRef.current.appendChild(remoteVideo);
-//             });
+        socketRef.current.on("user left", (id) => {
+          const peerObj = peers.find((p) => p.peerID === id);
+          if (peerObj) {
+            peerObj.peer.destroy();
+          }
+          const peersList = peers.filter((p) => p.peerID !== id);
+          setPeers(peersList);
+        });
+      });
 
-//             setPeers((prevPeers) => [
-//               ...prevPeers,
-//               { peerID: from, peer: peer },
-//             ]);
-//             peer.signal(signal);
-//           }
-//         });
+    return () => {
+      socketRef.current.disconnect();
+      peers.forEach((peer) => peer.peer.destroy());
+    };
+  }, []);
 
-//         const peer = new SimplePeer({
-//           initiator: true,
-//           trickle: false,
-//           stream: stream,
-//         });
+  function createPeer(userToSignal, callerID, stream) {
+    const peer = new SimplePeer({
+      initiator: true,
+      trickle: false,
+      stream,
+    });
 
-//         peer.on('signal', (signal) => {
-//           socketRef.current.emit('signal', {
-//             roomId: roomName,
-//             signalData: signal,
-//             to: 'all',
-//           });
-//         });
+    peer.on("signal", (signal) => {
+      socketRef.current.emit("sending signal", {
+        userToSignal,
+        callerID,
+        signal,
+      });
+    });
 
-//         peer.on('stream', (remoteStream) => {
-//           const remoteVideo = document.createElement('video');
-//           remoteVideo.srcObject = remoteStream;
-//           remoteVideo.autoplay = true;
-//           remoteVideo.playsInline = true;
-//           remoteVideosRef.current.appendChild(remoteVideo);
-//         });
+    peer.on("stream", (remoteStream) => {
+      addRemoteStream(remoteStream);
+    });
 
-//         setPeers([{ peerID: 'self', peer: peer }]);
-//       });
+    return peer;
+  }
 
-//     return () => {
-//       peers.forEach(({ peer }) => peer.destroy());
-//       socketRef.current.disconnect();
-//     };
-//   }, [peers]);
+  function addPeer(incomingSignal, callerID, stream) {
+    const peer = new SimplePeer({
+      initiator: false,
+      trickle: false,
+      stream,
+    });
 
-//   return (
-//     <div>
-//       <h2>Local Video</h2>
-//       <video ref={localVideoRef} autoPlay playsInline></video>
-//       <h2>Remote Videos</h2>
-//       <div ref={remoteVideosRef}></div>
-//     </div>
-//   );
-// };
+    peer.on("signal", (signal) => {
+      socketRef.current.emit("returning signal", { signal, callerID });
+    });
 
-// export default WebRTCComponent;
+    peer.on("stream", (remoteStream) => {
+      addRemoteStream(remoteStream);
+    });
+
+    peer.signal(incomingSignal);
+
+    return peer;
+  }
+
+  function addRemoteStream(remoteStream) {
+    const remoteVideo = document.createElement("video");
+    remoteVideo.srcObject = remoteStream;
+    remoteVideo.autoplay = true;
+    remoteVideo.playsInline = true;
+    remoteVideosRef.current.appendChild(remoteVideo);
+  }
+
+  return (
+    <div>
+      <h2>Local Video</h2>
+      <video ref={localVideoRef} autoPlay playsInline muted></video>
+      <h2>Remote Videos</h2>
+      <div ref={remoteVideosRef}></div>
+    </div>
+  );
+};
+
+export default WebRTCComponent;
