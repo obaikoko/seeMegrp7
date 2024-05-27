@@ -202,20 +202,28 @@
   .call-container{
     width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding-top: 5rem;
   }
   .container-call{
     width: 100%;
-    height: 100%;
+    height: 90%;
+    display: flex;
+    overflow: hidden; 
   }
   .slide{
     height: 100%;
     width: 40%;
   }
+  .slideDetails{
+    height: 70%;
+  }
+  .slideItem{
+    height: 70px;
+  }
   .chat{
     width: 50%;
-
+  }
+  .chat .callImg{
+    height: 690px;
   }
 }
