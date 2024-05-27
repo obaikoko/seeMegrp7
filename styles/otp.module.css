@@ -157,7 +157,7 @@
   cursor: pointer; 
   border: 1px solid var(--bg-secondary);
 }
-]
+
 @media (min-width: 1440px) {
   .password-main-container {
     background: var(--bg-primary);
