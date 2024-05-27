@@ -57,7 +57,6 @@
   color: var(--bg-secondary);
   border-radius: 10px;
   border: 2px solid var(--bg-secondary);
-  width: 100%;
 }
 
 .google-btn img {
