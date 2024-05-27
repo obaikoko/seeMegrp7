@@ -14,7 +14,6 @@ import {
 import styles from "../styles/auth.module.css";
 import Loader from "@/components/Loader.jsx";
 import GoogleSign from '@/components/GoogleSign.jsx';
-import axios from "axios";
 
 const Auth = () => {
   const [login, { isLoading: loadingLogin }] = useLoginMutation();

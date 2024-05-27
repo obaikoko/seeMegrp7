@@ -3,7 +3,6 @@ import styles from "../styles/call.module.css";
 import Particle from "../components/design";
 import Settings from "@/components/setting";
 import Router, { useRouter } from "next/router";
-import Web from "@/components/web";
 // import SimpleWebRTC from 'simplewebrtc';
 // import WebRTCComponent from "@/components/WebRtcComponent";
 
