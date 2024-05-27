@@ -112,7 +112,7 @@ const ProfileSetup = () => {
         <div className={styles["fixed-width"]}>
           <div className={styles["profile-right-section-wrapper"]}>
             <div className={styles.text}>
-              {/* {`Your User ID is ${user._id}`} */}
+              {`Your User ID is ${user._id}`}
               <img
                 src="https://res.cloudinary.com/duz7maquu/image/upload/v1716280091/SeeMe/gravity-ui_copy_zwtqor.svg"
                 alt=""
