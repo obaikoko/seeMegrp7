@@ -115,7 +115,6 @@ function AddFriends() {
                     </div>
                   ))}
               </>
-            </div>
 
             <div className={styles.addUserContainer}>
               <div className={styles.con1}>
