@@ -14,6 +14,7 @@ function AddFriends() {
   const [addFriend, { isLoading: loadingAddFriend, error: addFriendError }] =
     useAddFriendMutation();
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const savedRequests =
@@ -52,9 +53,17 @@ function AddFriends() {
     }
   };
 
-  //console.log(users);
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Filter users based on the search query
+  const filteredUsers = users?.filter((user) =>
+    user.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <>
+    <div className={styles["addFriends-Container"]}>
       <Particle />
       <div className={styles.containerAddfriend}>
         <div className={styles["parent-div2"]}>
@@ -66,9 +75,18 @@ function AddFriends() {
             {isLoading && <Loader />}
 
             <>
-              {users &&
-                users.map((user) => (
-                  <div key={user._id}>
+              <div className={styles["add-search"]}>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  placeholder="Search Friends"
+                  className="search-bar"
+                />
+              </div>
+              {filteredUsers &&
+                filteredUsers.map((user) => (
+                  <div key={user._id} className={styles.userItem}>
                     <img
                       className={styles.userImg}
                       src={user.image?.url || user.image}
@@ -96,16 +114,23 @@ function AddFriends() {
             </>
           </div>
 
-          <div className={styles.josh}>
+          <div className={styles.addUserContainer}>
             <div className={styles.con1}>
               <h3>Add by Username or ID</h3>
               <label>
-                <input type='text' placeholder='' required />
+                <input
+                  type="text"
+                  placeholder="Enter username or ID"
+                  required
+                />
               </label>
               <button onClick={handleContinue}>Add</button>
             </div>
             <div className={styles.con2}>
               <img src="https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg" />
+            </div>
+
+            <div className={styles.con3}>
               <a
                 href="#"
                 className={isAnyRequestSent ? styles.active : styles.inactive}
@@ -118,7 +143,7 @@ function AddFriends() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

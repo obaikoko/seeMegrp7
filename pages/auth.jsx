@@ -14,8 +14,6 @@ import {
 import styles from "../styles/auth.module.css";
 import Loader from "@/components/Loader.jsx";
 import GoogleSign from '@/components/GoogleSign.jsx';
-import axios from "axios";
-
 
 const Auth = () => {
   const [login, { isLoading: loadingLogin }] = useLoginMutation();
@@ -210,7 +208,7 @@ const Auth = () => {
               <div className={styles.line}></div>
             </div>
             <p className={styles.continue}>Continue With</p>
-             <GoogleSign/>
+            <GoogleSign/>
             <div className={styles.account}>
               <span className={styles["txt-ac"]}>Don't have an account? </span>
               <p className={styles.sign} onClick={handleRegisterClick}>

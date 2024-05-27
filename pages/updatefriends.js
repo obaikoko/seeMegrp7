@@ -15,7 +15,7 @@ function UpdateFriends() {
   const router = useRouter();
 
   const { data: usersFriends, refetch, isLoading, error } = useGetFriendQuery();
- 
+
   const [
     updateFriendsRequest,
     {
@@ -52,10 +52,10 @@ function UpdateFriends() {
     router.push('/call')
   }
 
-
   return (
     <>
       <Particle />
+
       <div className={styles.containerAddfriend}>
         <div className={styles['parent-div2']}>
           <img
@@ -70,10 +70,10 @@ function UpdateFriends() {
             className={styles.logo}
           />
         </div>
+        {isLoading && <Loader />}
         <div className={styles['parent-div']}>
           <div className={styles.cally}>
-            <p className={styles.header}>Friend Requests {<span>{}</span>}</p>
-            {isLoading && <Loader />}
+            <p className={styles.header}>Friend Requests</p>
 
             <>
               {usersFriends &&
@@ -92,7 +92,7 @@ function UpdateFriends() {
                     <TimeFormat   time={user.createdAt} />
                     <button
                       onClick={() => acceptRequestBtn(user.sender)}
-                      // className={styles.accept}
+                      className={styles.accept}
                     >
                       {user.status === 'accepted' ? 'accepted' : 'Accept'}
                     </button>

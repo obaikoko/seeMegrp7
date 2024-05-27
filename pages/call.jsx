@@ -3,10 +3,10 @@ import styles from "../styles/call.module.css";
 import Particle from "../components/design";
 import Settings from "@/components/setting";
 import Router, { useRouter } from "next/router";
-// import SimpleWebRTC from 'simplewebrtc';
-// import WebRTCComponent from "@/components/WebRtcComponent";
+import WebRTCComponent from "@/components/WebRtcComponent";
 
 const Call = () => {
+  const [isVideoActive, setIsVideoActive] = useState(false);
   const router = useRouter();
 
   const handleAddFriend = () => {
@@ -14,6 +14,14 @@ const Call = () => {
   };
   const handleFriendRqt = () => {
     router.push("/updatefriends");
+  };
+
+  const handleStartVideo = () => {
+    setIsVideoActive(true);
+  };
+
+  const handleEndVideo = () => {
+    setIsVideoActive(false);
   };
 
   const DataItems = [
@@ -136,12 +144,9 @@ const Call = () => {
             alt="icon"
             className={styles.person}
           />
-          {/* <WebRTCComponent /> */}
-          {/* <img
-            src="https://res.cloudinary.com/duz7maquu/image/upload/v1716048004/SeeMe/Musk_zffxmv.jpg"
-            alt="Call Image"
-            className={styles.callImg}
-          /> */}
+          <div className={styles.callImg}>
+            {isVideoActive && <WebRTCComponent />}
+          </div>
           <div className={styles.square}>
             <div className={styles.circle}></div>
             <p>You</p>
@@ -151,6 +156,7 @@ const Call = () => {
               src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044381/SeeMe/octicon_unmute-16_wg2xcv.png"
               alt="Speaker"
               className={styles.navIcon}
+              onClick={handleStartVideo}
             />
             <img
               src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044354/SeeMe/fluent_camera-off-16-filled_o8ykuc.png"
@@ -168,6 +174,7 @@ const Call = () => {
               src="https://res.cloudinary.com/duz7maquu/image/upload/v1716044380/SeeMe/ion_call_do3u3t.png"
               alt="Call icon"
               className={styles.callIcon}
+              onClick={handleEndVideo}
             />
           </div>
         </div>

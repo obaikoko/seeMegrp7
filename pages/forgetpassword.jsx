@@ -40,21 +40,21 @@ const ForgetPassword = () => {
   };
   return (
     <>
-      <div className={styles["password-main-container"]} id="container">
+      <div className={styles['password-main-container']} id='container'>
         <Particle />
-        <div className={styles["password-container"]}>
-          <div className={styles["password-toggle-panel"]}>
-            <div className={styles["write-up"]}>
+        <div className={styles['password-container']}>
+          <div className={styles['password-toggle-panel']}>
+            <div className={styles['write-up']}>
               <img
-                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_og2nrm.svg"
-                alt="Layer 3"
+                src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/Layer_3_og2nrm.svg'
+                alt='Layer 3'
               />
               <h2>Chill, we've got you !</h2>
             </div>
             <div className={styles.image}>
               <img
-                src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/image4-removebg-preview_1_bkbo0e.png"
-                alt="Remove Background Preview"
+                src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030525/SeeMe/image4-removebg-preview_1_bkbo0e.png'
+                alt='Remove Background Preview'
               />
             </div>
           </div>
@@ -82,10 +82,10 @@ const ForgetPassword = () => {
                 </p>
               </div>
 
-              <div className={styles["box-icon"]}>
+              <div className={styles['box-icon']}>
                 <img
-                  src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030530/SeeMe/sms_qjdq2o.svg"
-                  alt="SMS Icon"
+                  src='https://res.cloudinary.com/duz7maquu/image/upload/v1716030530/SeeMe/sms_qjdq2o.svg'
+                  alt='SMS Icon'
                 />
               </div>
               <div className={styles["email-input"]}>

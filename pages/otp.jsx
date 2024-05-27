@@ -36,6 +36,9 @@ const OTP = () => {
   const handleChange = (e) => {
     setOtp(e.target.value);
   };
+  const backBtn = () => {
+    router.push("/forgetpassword");
+  };
 
   return (
     <>
@@ -68,6 +71,7 @@ const OTP = () => {
                   <img
                     src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030522/SeeMe/arrow-left_y1wsd8.svg"
                     alt="Arrow Left"
+                    onClick={backBtn}
                   />
                 </div>
                 <h1>Forgot your password?</h1>
@@ -76,24 +80,18 @@ const OTP = () => {
               <div className={styles.text}>
                 <p>{`We've sent the OTP to your email address `}</p>
               </div>
-
-              <div className={styles["box-icon"]}>
-                <img
-                  src="https://res.cloudinary.com/duz7maquu/image/upload/v1716030530/SeeMe/sms_qjdq2o.svg"
-                  alt="SMS Icon"
-                />
-              </div>
               <div className={styles["email-input"]}>
                 <input
-                  type="text"
-                  placeholder="Enter otp"
+                  type="number"
+                  placeholder=""
                   value={otp}
                   onChange={handleChange}
+                  className={styles.input}
                 />
               </div>
-
-              <button type="submit" className={styles.submit}>
-                SignUp
+              <button type="button" className={styles.cancel}>Resend Otp</button>
+              <button type="submit" className={styles.verify}>
+                Sumbit
               </button>
             </form>
           </div>
