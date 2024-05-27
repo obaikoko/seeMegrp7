@@ -7,7 +7,6 @@
 .call-container .logo {
   width: 252px;
   height: 66.946px;
-  flex-shrink: 0;
   z-index: 1000;
 }
 
@@ -141,14 +140,15 @@
   width: 100%;
   height: 390px;
   border-radius: 15px;
+
 }
 
-.chat .person{
-    display: flex;
-    position: absolute;
-    right: 3%;
-    top: 2%;
-    width: 8%;
+.chat .person {
+  display: flex;
+  position: absolute;
+  right: 3%;
+  top: 2%;
+  width: 8%;
 }
 
 .chat .square {
@@ -196,4 +196,26 @@
   height: 40px;
   width: 170px;
   border-radius: 10px;
+}
+
+@media (min-width: 1440px){
+  .call-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .container-call{
+    width: 100%;
+    height: 100%;
+  }
+  .slide{
+    height: 100%;
+    width: 40%;
+  }
+  .chat{
+    width: 50%;
+
+  }
 }

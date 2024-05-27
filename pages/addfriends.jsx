@@ -52,68 +52,93 @@ function AddFriends() {
     }
   };
 
-  console.log(users);
+  const UserList = ({ users, requestedUsers, handleRequestBtn, styles }) => {
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearchChange = (event) => {
+      setSearchQuery(event.target.value);
+    };
+
+    // Filter users based on the search query
+    const filteredUsers = users.filter((user) =>
+      user.username.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
   return (
     <>
-      <Particle />
-      <div className={styles.containerAddfriend}>
-        <div className={styles["parent-div2"]}>
-          <h1>Add Friends</h1>
-        </div>
-        <div className={styles["parent-div"]}>
-          <div className={styles.cally}>
-            <h3 className={styles.header}>Suggested</h3>
-            {isLoading && <Loader />}
-
-            <>
-              {users &&
-                users.map((user) => (
-                  <div key={user._id}>
-                    <img
-                      className={styles.userImg}
-                      src={user.image?.url || user.image}
-                      alt="Avatar"
-                    />
-                    {user.username}{" "}
-                    <button
-                      onClick={() => handleRequestBtn(user._id)}
-                      disabled={requestedUsers.includes(user._id)}
-                      style={
-                        requestedUsers.includes(user._id)
-                          ? {
-                              backgroundColor: "rgba(8, 72, 125, 0.5)",
-                              color: "white",
-                            }
-                          : {}
-                      }
-                    >
-                      {requestedUsers.includes(user._id)
-                        ? "Request Sent"
-                        : "ADD"}
-                    </button>
-                  </div>
-                ))}
-            </>
+      <div className={styles["addFriends-Container"]}>
+        <Particle />
+        <div className={styles.containerAddfriend}>
+          <div className={styles["parent-div2"]}>
+            <h1>Add Friends</h1>
           </div>
+          <div className={styles["parent-div"]}>
+            <div className={styles.cally}>
+              <h3 className={styles.header}>Suggested</h3>
+              {isLoading && <Loader />}
 
-          <div className={styles.josh}>
-            <div className={styles.con1}>
-              <h3>Add by Username or ID</h3>
-              <label>
-                <input type="number" placeholder="" required />
-              </label>
-              <button onClick={handleContinue}>Add</button>
+              <>
+                <div className={styles["add-search"]}>
+                  <input
+                    type="text"
+                    // value={searchQuery}
+                    // onChange={handleSearchChange}
+                    placeholder="Search Friends"
+                    className="search-bar"
+                  />
+                </div>
+                {users &&
+                  users.map((user) => (
+                    <div key={user._id}>
+                      <img
+                        className={styles.userImg}
+                        src={user.image?.url || user.image}
+                        alt="Avatar"
+                      />
+                      {user.username}{" "}
+                      <button
+                        onClick={() => handleRequestBtn(user._id)}
+                        disabled={requestedUsers.includes(user._id)}
+                        style={
+                          requestedUsers.includes(user._id)
+                            ? {
+                                backgroundColor: "rgba(8, 72, 125, 0.5)",
+                                color: "white",
+                              }
+                            : {}
+                        }
+                      >
+                        {requestedUsers.includes(user._id)
+                          ? "Request Sent"
+                          : "ADD"}
+                      </button>
+                    </div>
+                  ))}
+              </>
             </div>
-            <div className={styles.con2}>
-              <img src="https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg" />
-              <a
-                href="#"
-                className={isAnyRequestSent ? styles.active : styles.inactive}
-                onClick={handleContinue}
-              >
-                Continue
-              </a>
-              <button onClick={handleSkipButton}>Skip</button>
+
+            <div className={styles.addUserContainer}>
+              <div className={styles.con1}>
+                <h3>Add by Username or ID</h3>
+                <label>
+                  <input type="number" placeholder="" required />
+                </label>
+                <button onClick={handleContinue}>Add</button>
+              </div>
+              <div className={styles.con2}>
+                <img src="https://res.cloudinary.com/duz7maquu/image/upload/v1716041164/SeeMe/Layer_2_rzzmxu.svg" />
+              </div>
+
+              <div className={styles.con3}>
+                <a
+                  href="#"
+                  className={isAnyRequestSent ? styles.active : styles.inactive}
+                  onClick={handleContinue}
+                >
+                  Continue
+                </a>
+                <button onClick={handleSkipButton}>Skip</button>
+              </div>
             </div>
           </div>
         </div>

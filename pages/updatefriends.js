@@ -90,11 +90,11 @@ function UpdateFriends() {
                     {user.sender.username}{' '}
                     <button
                       onClick={() => acceptRequestBtn(user.sender)}
-                      // className={styles.accept}
+                      className={styles.accept}
                     >
                       {user.status === 'Accepted' ? 'Accepted' : 'Accept'}
                     </button>
-                    <button onClick={() => rejectRequestBtn(user.sender)}>
+                    <button onClick={() => rejectRequestBtn(user.sender)} className={styles.reject}>
                       Reject
                     </button>
                   </div>
