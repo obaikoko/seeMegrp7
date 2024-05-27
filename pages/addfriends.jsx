@@ -52,7 +52,7 @@ function AddFriends() {
     }
   };
 
-  console.log(users);
+  //console.log(users);
   return (
     <>
       <Particle />
@@ -100,7 +100,7 @@ function AddFriends() {
             <div className={styles.con1}>
               <h3>Add by Username or ID</h3>
               <label>
-                <input type="number" placeholder="" required />
+                <input type='text' placeholder='' required />
               </label>
               <button onClick={handleContinue}>Add</button>
             </div>

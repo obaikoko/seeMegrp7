@@ -53,6 +53,9 @@ const ProfileSetup = () => {
         "base64"
       );
     });
+    const handleCont = () =>{
+      router.push('/addfriends')
+    }
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
@@ -147,8 +150,8 @@ const ProfileSetup = () => {
                 {isLoading ? <Loader /> : "Save"}
               </button>
 
-              <button className={styles.button2}>
-                {isLoading ? <Loader /> : "Continue"}
+              <button onClick={handleCont} className={styles.button2}>
+                Continue
               </button>
             </div>
           </div>

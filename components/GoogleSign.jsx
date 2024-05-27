@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { setCredentials } from '@/src/features/auth/authSlice';
 import styles from '../styles/auth.module.css';
 import { toast } from 'react-toastify';
+
+
 const GoogleSign = () => {
     const dispatch = useDispatch();
     const router = useRouter();
