@@ -49,13 +49,14 @@
 }
 
 .containerAddfriend img {
-  width: 35px;
-  border-radius: 12px;
+  width: 50px;
+  border-radius: 20px;
 }
 
 .cally {
   overflow-x: auto;
   scroll-behavior: smooth;
+  width: 100vw;
 }
 
 .cally div {
@@ -75,7 +76,7 @@
   display: flex;
   justify-content: center;
   padding: 10px 50px;
-  width: 313px;
+  width: 250px;
   color: var(--bg-primary);
   background-color: var(--bg-secondary);
   border: none;
